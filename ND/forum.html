@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <title>Forum Diskusi Noedo</title>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-image: url(assets/images/licensed-image.jpg) #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        #messages {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            background: #fafafa;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .msg {
+            padding: 8px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .me {
+            background: #d1e7ff;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .other {
+            background: #d4edda;
+            align-self: flex-start;
+            margin-right: auto;
+        }
+
+        .name {
+            font-weight: bold;
+            margin-bottom: 4px;
+            color: #333;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #007bff;
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #notif {
+            display: none;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            animation: fadeInOut 3s ease;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .username {
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .tools {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .clear-btn {
+            background: #dc3545;
+        }
+
+        .clear-btn:hover {
+            background: #b02a37;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul class="sidebar">
+            <li onclick=hideSidebar()><a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                        viewBox="0 -960 960 960" width="24px" fill="black">
+                        <path
+                            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                    </svg></a></li>
+            <li><a href="Aboutme.html">About Me</a></li>
+            <li><a href="produk.html">Product</a></li>
+            <li><a href="forum.html">Forum</a></li>
+            <li><a href="galery.html">Galery</a></li>
+        </ul>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li class="hideOnMobile"><a href="Aboutme.html">About Me</a></li>
+            <li class="hideOnMobile"><a href="produk.html">Product</a></li>
+            <li class="hideOnMobile"><a href="forum.html">Forum</a></li>
+            <li class="hideOnMobile"><a href="galery.html">Galery</a></li>
+            <li onclick=showSidebar()><a><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                        width="24px" fill="black">
+                        <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+                    </svg></a></li>
+        </ul>
+    </nav>
+    <script>
+        function showSidebar() {
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display = 'flex'
+        }
+        function hideSidebar() {
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display = 'none'
+        }
+
+    </script>
+
+
+    <div class="container">
+        <h2>💬 Forum Diskusi Noedo</h2>
+
+        <!-- Input nama -->
+        <div class="username">
+            <input type="text" id="username" placeholder="Masukkan nama Anda..." />
+            <button onclick="setName()">Set Nama</button>
+        </div>
+
+        <div id="messages"></div>
+
+        <div class="input-area">
+            <input type="text" id="msgInput" placeholder="Ketik pesan..." disabled />
+            <button id="sendBtn" onclick="kirimPesan()" disabled>Kirim</button>
+        </div>
+
+        <div class="tools">
+            <button class="clear-btn" onclick="clearChat()">🧹 Hapus Semua Pesan</button>
+        </div>
+    </div>
+
+    <div id="notif">🔔 Pesan baru diterima!</div>
+
+    <!-- Nada dering -->
+    <audio id="notifSound">
+        <source src="discord-notification.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const messages = document.getElementById("messages");
+        const msgInput = document.getElementById("msgInput");
+        const notif = document.getElementById("notif");
+        const notifSound = document.getElementById("notifSound");
+        const sendBtn = document.getElementById("sendBtn");
+        let username = "";
+
+        // 🔹 Muat pesan dari localStorage
+        window.onload = function () {
+            const savedMessages = JSON.parse(localStorage.getItem("noedo_forum")) || [];
+            savedMessages.forEach(m => tambahPesan(m.nama, m.teks, m.tipe, false));
+        };
+
+        function setName() {
+            const input = document.getElementById("username");
+            if (input.value.trim() === "") {
+                alert("Nama tidak boleh kosong!");
+                return;
+            }
+            username = input.value.trim();
+            input.disabled = true;
+            msgInput.disabled = false;
+            sendBtn.disabled = false;
+            input.style.background = "#e9ecef";
+            alert("Nama diset sebagai: " + username);
+        }
+
+        function kirimPesan() {
+            const text = msgInput.value.trim();
+            if (text === "") return;
+
+            tambahPesan(username, text, "me", true);
+            msgInput.value = "";
+
+            // Simulasi balasan pengguna lain
+            setTimeout(() => {
+                tambahPesan("UserLain", "Hai " + username + ", aku melihat pesanmu!", "other", true);
+                tampilkanNotif();
+                notifSound.play();
+            }, 2000);
+        }
+
+        function tambahPesan(nama, teks, tipe, simpan = true) {
+            const msgBox = document.createElement("div");
+            msgBox.classList.add("msg", tipe);
+
+            const name = document.createElement("div");
+            name.classList.add("name");
+            name.textContent = nama;
+
+            const textNode = document.createElement("div");
+            textNode.textContent = teks;
+
+            msgBox.appendChild(name);
+            msgBox.appendChild(textNode);
+            messages.appendChild(msgBox);
+
+            messages.scrollTop = messages.scrollHeight;
+
+            if (simpan) {
+                const existing = JSON.parse(localStorage.getItem("noedo_forum")) || [];
+                existing.push({ nama, teks, tipe });
+                localStorage.setItem("noedo_forum", JSON.stringify(existing));
+            }
+        }
+
+        function tampilkanNotif() {
+            notif.style.display = "block";
+            setTimeout(() => notif.style.display = "none", 3000);
+        }
+
+        // 🔹 Fungsi hapus semua pesan
+        function clearChat() {
+            if (confirm("Yakin ingin menghapus semua pesan?")) {
+                localStorage.removeItem("noedo_forum");
+                messages.innerHTML = "";
+                alert("Semua pesan telah dihapus.");
+            }
+        }
+
+        msgInput.addEventListener("keypress", e => {
+            if (e.key === "Enter") kirimPesan();
+        });
+    </script>
+
+</body>
+
+</html>

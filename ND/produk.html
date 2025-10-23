@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produk Noedo Computer</title>
+  <link href="style.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f0f2f5;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    /* === FILTER BUTTON === */
+    .filter-buttons {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .filter-buttons button {
+      background: #fff;
+      border: 2px solid #00b894;
+      color: #00b894;
+      padding: 8px 18px;
+      margin: 5px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .filter-buttons button:hover,
+    .filter-buttons button.active {
+      background: #00b894;
+      color: #fff;
+    }
+
+    /* === GRID PRODUK === */
+    .produk-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .produk {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: 0.3s;
+      display: none; /* akan muncul sesuai filter */
+    }
+
+    .produk.show {
+      display: block;
+    }
+
+    .produk:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .produk img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .produk-content {
+      padding: 15px;
+    }
+
+    .produk-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #222;
+    }
+
+    .produk-spec {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .produk-price {
+      font-size: 16px;
+      font-weight: bold;
+      color: #00b894;
+      margin-bottom: 15px;
+    }
+
+    .btn-wa {
+      display: inline-block;
+      background: #25d366;
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .btn-wa:hover {
+      background: #1ebe57;
+    }
+  </style>
+</head>
+<body>
+     <nav>
+        <ul class="sidebar">
+            <li onclick=hideSidebar()><a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="black">
+                        <path
+                            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                    </svg></a></li>
+            <li><a href="Aboutme.html">About Me</a></li>
+            <li><a href="produk.html">Product</a></li>
+            <li><a href="forum.html">Forum</a></li>
+            <li><a href="galery.html">Galery</a></li>
+        </ul>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li class="hideOnMobile"><a href="Aboutme.html">About Me</a></li>
+            <li class="hideOnMobile"><a href="produk.html">Product</a></li>
+            <li class="hideOnMobile"><a href="forum.html">Forum</a></li>
+            <li class="hideOnMobile"><a href="galery.html">Galery</a></li>
+            <li onclick=showSidebar()><a><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                        width="24px" fill="black">
+                        <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+                    </svg></a></li>
+        </ul>
+    </nav>
+    <script>
+        function showSidebar() {
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display = 'flex'
+        }
+         function hideSidebar() {
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display = 'none'
+        }
+
+    </script>
+
+  <h2>🛍️ Produk Noedo Computer</h2>
+
+  <!-- TOMBOL FILTER -->
+  <div class="filter-buttons">
+    <button class="active" onclick="filterProduk('all')">Semua</button>
+    <button onclick="filterProduk('laptop')">Laptop</button>
+    <button onclick="filterProduk('monitor')">Monitor</button>
+    <button onclick="filterProduk('printer')">Printer</button>
+  </div>
+
+  <!-- DAFTAR PRODUK -->
+  <div class="produk-container">
+
+    <!-- Laptop -->
+    <div class="produk laptop show">
+      <img src="https://picsum.photos/400/250?random=21" alt="Laptop Lenovo Thinkpad">
+      <div class="produk-content">
+        <div class="produk-title">Laptop Lenovo Thinkpad X280</div>
+        <div class="produk-spec">
+          💾 RAM 8GB DDR4<br>
+          💽 SSD 256GB<br>
+          💡 Intel Core i5 Gen 8<br>
+          🔋 Baterai tahan 6 jam
+        </div>
+        <div class="produk-price">Rp 5.750.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Laptop%20Lenovo%20Thinkpad%20X280" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <div class="produk laptop show">
+      <img src="https://picsum.photos/400/250?random=22" alt="Laptop Asus VivoBook">
+      <div class="produk-content">
+        <div class="produk-title">Laptop Asus VivoBook 14</div>
+        <div class="produk-spec">
+          💾 RAM 16GB<br>
+          💽 SSD 512GB<br>
+          💡 Intel i7 Gen 11<br>
+          ⚙️ Windows 11 Pro
+        </div>
+        <div class="produk-price">Rp 8.950.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Laptop%20Asus%20VivoBook%2014" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <div class="produk laptop show">
+      <img src="https://picsum.photos/400/250?random=21" alt="Laptop Lenovo Thinkpad">
+      <div class="produk-content">
+        <div class="produk-title">Laptop Lenovo Thinkpad X280</div>
+        <div class="produk-spec">
+          💾 RAM 8GB DDR4<br>
+          💽 SSD 256GB<br>
+          💡 Intel Core i5 Gen 8<br>
+          🔋 Baterai tahan 6 jam
+        </div>
+        <div class="produk-price">Rp 5.750.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Laptop%20Lenovo%20Thinkpad%20X280" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <div class="produk laptop show">
+      <img src="https://picsum.photos/400/250?random=22" alt="Laptop Asus VivoBook">
+      <div class="produk-content">
+        <div class="produk-title">Laptop Asus VivoBook 14</div>
+        <div class="produk-spec">
+          💾 RAM 16GB<br>
+          💽 SSD 512GB<br>
+          💡 Intel i7 Gen 11<br>
+          ⚙️ Windows 11 Pro
+        </div>
+        <div class="produk-price">Rp 8.950.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Laptop%20Asus%20VivoBook%2014" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <!-- Monitor -->
+    <div class="produk monitor show">
+      <img src="https://picsum.photos/400/250?random=23" alt="Monitor Samsung 24 inch">
+      <div class="produk-content">
+        <div class="produk-title">Monitor Samsung 24” Full HD</div>
+        <div class="produk-spec">
+          📺 Resolusi 1920x1080<br>
+          ⚡ Refresh Rate 75Hz<br>
+          🔌 HDMI + VGA Port<br>
+          🧠 Panel IPS
+        </div>
+        <div class="produk-price">Rp 1.650.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Monitor%20Samsung%2024%20Inch" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+    <div class="produk monitor show">
+      <img src="https://picsum.photos/400/250?random=23" alt="Monitor Samsung 24 inch">
+      <div class="produk-content">
+        <div class="produk-title">Monitor Samsung 24” Full HD</div>
+        <div class="produk-spec">
+          📺 Resolusi 1920x1080<br>
+          ⚡ Refresh Rate 75Hz<br>
+          🔌 HDMI + VGA Port<br>
+          🧠 Panel IPS
+        </div>
+        <div class="produk-price">Rp 1.650.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Monitor%20Samsung%2024%20Inch" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <!-- Printer -->
+    <div class="produk printer show">
+      <img src="https://picsum.photos/400/250?random=24" alt="Printer Epson L3210">
+      <div class="produk-content">
+        <div class="produk-title">Printer Epson L3210</div>
+        <div class="produk-spec">
+          🖨️ Print, Scan, Copy<br>
+          💧 Teknologi InkTank<br>
+          ⚙️ Kecepatan 33 ppm<br>
+          🔌 USB 2.0 Connection
+        </div>
+        <div class="produk-price">Rp 2.050.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Printer%20Epson%20L3210" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+    <div class="produk printer show">
+      <img src="https://picsum.photos/400/250?random=24" alt="Printer Epson L3210">
+      <div class="produk-content">
+        <div class="produk-title">Printer Epson L3210</div>
+        <div class="produk-spec">
+          🖨️ Print, Scan, Copy<br>
+          💧 Teknologi InkTank<br>
+          ⚙️ Kecepatan 33 ppm<br>
+          🔌 USB 2.0 Connection
+        </div>
+        <div class="produk-price">Rp 2.050.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Printer%20Epson%20L3210" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+  
+  </div>
+   <div class="produk-container">
+
+    <!-- Laptop -->
+    <div class="produk laptop show">
+      <img src="https://picsum.photos/400/250?random=21" alt="Laptop Lenovo Thinkpad">
+      <div class="produk-content">
+        <div class="produk-title">Laptop Lenovo Thinkpad X280</div>
+        <div class="produk-spec">
+          💾 RAM 8GB DDR4<br>
+          💽 SSD 256GB<br>
+          💡 Intel Core i5 Gen 8<br>
+          🔋 Baterai tahan 6 jam
+        </div>
+        <div class="produk-price">Rp 5.750.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Laptop%20Lenovo%20Thinkpad%20X280" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <div class="produk laptop show">
+      <img src="https://picsum.photos/400/250?random=22" alt="Laptop Asus VivoBook">
+      <div class="produk-content">
+        <div class="produk-title">Laptop Asus VivoBook 14</div>
+        <div class="produk-spec">
+          💾 RAM 16GB<br>
+          💽 SSD 512GB<br>
+          💡 Intel i7 Gen 11<br>
+          ⚙️ Windows 11 Pro
+        </div>
+        <div class="produk-price">Rp 8.950.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Laptop%20Asus%20VivoBook%2014" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <div class="produk laptop show">
+      <img src="https://picsum.photos/400/250?random=21" alt="Laptop Lenovo Thinkpad">
+      <div class="produk-content">
+        <div class="produk-title">Laptop Lenovo Thinkpad X280</div>
+        <div class="produk-spec">
+          💾 RAM 8GB DDR4<br>
+          💽 SSD 256GB<br>
+          💡 Intel Core i5 Gen 8<br>
+          🔋 Baterai tahan 6 jam
+        </div>
+        <div class="produk-price">Rp 5.750.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Laptop%20Lenovo%20Thinkpad%20X280" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <div class="produk laptop show">
+      <img src="https://picsum.photos/400/250?random=22" alt="Laptop Asus VivoBook">
+      <div class="produk-content">
+        <div class="produk-title">Laptop Asus VivoBook 14</div>
+        <div class="produk-spec">
+          💾 RAM 16GB<br>
+          💽 SSD 512GB<br>
+          💡 Intel i7 Gen 11<br>
+          ⚙️ Windows 11 Pro
+        </div>
+        <div class="produk-price">Rp 8.950.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Laptop%20Asus%20VivoBook%2014" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <!-- Monitor -->
+    <div class="produk monitor show">
+      <img src="https://picsum.photos/400/250?random=23" alt="Monitor Samsung 24 inch">
+      <div class="produk-content">
+        <div class="produk-title">Monitor Samsung 24” Full HD</div>
+        <div class="produk-spec">
+          📺 Resolusi 1920x1080<br>
+          ⚡ Refresh Rate 75Hz<br>
+          🔌 HDMI + VGA Port<br>
+          🧠 Panel IPS
+        </div>
+        <div class="produk-price">Rp 1.650.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Monitor%20Samsung%2024%20Inch" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+    <div class="produk monitor show">
+      <img src="https://picsum.photos/400/250?random=23" alt="Monitor Samsung 24 inch">
+      <div class="produk-content">
+        <div class="produk-title">Monitor Samsung 24” Full HD</div>
+        <div class="produk-spec">
+          📺 Resolusi 1920x1080<br>
+          ⚡ Refresh Rate 75Hz<br>
+          🔌 HDMI + VGA Port<br>
+          🧠 Panel IPS
+        </div>
+        <div class="produk-price">Rp 1.650.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Monitor%20Samsung%2024%20Inch" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <!-- Printer -->
+    <div class="produk printer show">
+      <img src="https://picsum.photos/400/250?random=24" alt="Printer Epson L3210">
+      <div class="produk-content">
+        <div class="produk-title">Printer Epson L3210</div>
+        <div class="produk-spec">
+          🖨️ Print, Scan, Copy<br>
+          💧 Teknologi InkTank<br>
+          ⚙️ Kecepatan 33 ppm<br>
+          🔌 USB 2.0 Connection
+        </div>
+        <div class="produk-price">Rp 2.050.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Printer%20Epson%20L3210" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+    <div class="produk printer show">
+      <img src="https://picsum.photos/400/250?random=24" alt="Printer Epson L3210">
+      <div class="produk-content">
+        <div class="produk-title">Printer Epson L3210</div>
+        <div class="produk-spec">
+          🖨️ Print, Scan, Copy<br>
+          💧 Teknologi InkTank<br>
+          ⚙️ Kecepatan 33 ppm<br>
+          🔌 USB 2.0 Connection
+        </div>
+        <div class="produk-price">Rp 2.050.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Printer%20Epson%20L3210" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+  
+  </div>
+ <div class="produk-container">
+
+    <!-- Laptop -->
+    <div class="produk laptop show">
+      <img src="https://picsum.photos/400/250?random=21" alt="Laptop Lenovo Thinkpad">
+      <div class="produk-content">
+        <div class="produk-title">Laptop Lenovo Thinkpad X280</div>
+        <div class="produk-spec">
+          💾 RAM 8GB DDR4<br>
+          💽 SSD 256GB<br>
+          💡 Intel Core i5 Gen 8<br>
+          🔋 Baterai tahan 6 jam
+        </div>
+        <div class="produk-price">Rp 5.750.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Laptop%20Lenovo%20Thinkpad%20X280" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <div class="produk laptop show">
+      <img src="https://picsum.photos/400/250?random=22" alt="Laptop Asus VivoBook">
+      <div class="produk-content">
+        <div class="produk-title">Laptop Asus VivoBook 14</div>
+        <div class="produk-spec">
+          💾 RAM 16GB<br>
+          💽 SSD 512GB<br>
+          💡 Intel i7 Gen 11<br>
+          ⚙️ Windows 11 Pro
+        </div>
+        <div class="produk-price">Rp 8.950.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Laptop%20Asus%20VivoBook%2014" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <div class="produk laptop show">
+      <img src="https://picsum.photos/400/250?random=21" alt="Laptop Lenovo Thinkpad">
+      <div class="produk-content">
+        <div class="produk-title">Laptop Lenovo Thinkpad X280</div>
+        <div class="produk-spec">
+          💾 RAM 8GB DDR4<br>
+          💽 SSD 256GB<br>
+          💡 Intel Core i5 Gen 8<br>
+          🔋 Baterai tahan 6 jam
+        </div>
+        <div class="produk-price">Rp 5.750.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Laptop%20Lenovo%20Thinkpad%20X280" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <div class="produk laptop show">
+      <img src="https://picsum.photos/400/250?random=22" alt="Laptop Asus VivoBook">
+      <div class="produk-content">
+        <div class="produk-title">Laptop Asus VivoBook 14</div>
+        <div class="produk-spec">
+          💾 RAM 16GB<br>
+          💽 SSD 512GB<br>
+          💡 Intel i7 Gen 11<br>
+          ⚙️ Windows 11 Pro
+        </div>
+        <div class="produk-price">Rp 8.950.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Laptop%20Asus%20VivoBook%2014" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <!-- Monitor -->
+    <div class="produk monitor show">
+      <img src="https://picsum.photos/400/250?random=23" alt="Monitor Samsung 24 inch">
+      <div class="produk-content">
+        <div class="produk-title">Monitor Samsung 24” Full HD</div>
+        <div class="produk-spec">
+          📺 Resolusi 1920x1080<br>
+          ⚡ Refresh Rate 75Hz<br>
+          🔌 HDMI + VGA Port<br>
+          🧠 Panel IPS
+        </div>
+        <div class="produk-price">Rp 1.650.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Monitor%20Samsung%2024%20Inch" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+    <div class="produk monitor show">
+      <img src="https://picsum.photos/400/250?random=23" alt="Monitor Samsung 24 inch">
+      <div class="produk-content">
+        <div class="produk-title">Monitor Samsung 24” Full HD</div>
+        <div class="produk-spec">
+          📺 Resolusi 1920x1080<br>
+          ⚡ Refresh Rate 75Hz<br>
+          🔌 HDMI + VGA Port<br>
+          🧠 Panel IPS
+        </div>
+        <div class="produk-price">Rp 1.650.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Monitor%20Samsung%2024%20Inch" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <!-- Printer -->
+    <div class="produk printer show">
+      <img src="https://picsum.photos/400/250?random=24" alt="Printer Epson L3210">
+      <div class="produk-content">
+        <div class="produk-title">Printer Epson L3210</div>
+        <div class="produk-spec">
+          🖨️ Print, Scan, Copy<br>
+          💧 Teknologi InkTank<br>
+          ⚙️ Kecepatan 33 ppm<br>
+          🔌 USB 2.0 Connection
+        </div>
+        <div class="produk-price">Rp 2.050.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Printer%20Epson%20L3210" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+    <div class="produk printer show">
+      <img src="https://picsum.photos/400/250?random=24" alt="Printer Epson L3210">
+      <div class="produk-content">
+        <div class="produk-title">Printer Epson L3210</div>
+        <div class="produk-spec">
+          🖨️ Print, Scan, Copy<br>
+          💧 Teknologi InkTank<br>
+          ⚙️ Kecepatan 33 ppm<br>
+          🔌 USB 2.0 Connection
+        </div>
+        <div class="produk-price">Rp 2.050.000</div>
+        <a class="btn-wa" href="https://wa.me/6281220151551?text=Halo%20saya%20ingin%20pesan%20Printer%20Epson%20L3210" target="_blank">Pesan Sekarang</a>
+      </div>
+    </div>
+  
+  </div>
+
+
+  <script>
+    function filterProduk(kategori) {
+      const produkList = document.querySelectorAll(".produk");
+      const buttons = document.querySelectorAll(".filter-buttons button");
+
+      // reset tombol aktif
+      buttons.forEach(btn => btn.classList.remove("active"));
+      event.target.classList.add("active");
+
+      produkList.forEach(p => {
+        if (kategori === "all" || p.classList.contains(kategori)) {
+          p.classList.add("show");
+        } else {
+          p.classList.remove("show");
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
